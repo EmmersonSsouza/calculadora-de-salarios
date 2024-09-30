@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Reajuste Salarial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+        .calculator {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 80%;
+        }
+        button {
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Calculadora de Reajuste Salarial</h2>
+        <input type="number" id="salarioAtual" placeholder="Salário Atual" step="0.01"><br>
+        <input type="number" id="percentualReajuste" placeholder="Percentual de Reajuste (%)" step="0.01"><br>
+        <button onclick="calcularReajuste()">Calcular Reajuste</button>
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularReajuste() {
+            const salarioAtual = parseFloat(document.getElementById("salarioAtual").value);
+            const percentualReajuste = parseFloat(document.getElementById("percentualReajuste").value);
+
+            if (!salarioAtual || !percentualReajuste) {
+                alert("Por favor, insira valores válidos.");
+                return;
+            }
+
+            const valorReajuste = salarioAtual * (percentualReajuste / 100);
+            const novoSalario = salarioAtual + valorReajuste;
+
+            document.getElementById("resultado").innerHTML = `
+                <p><strong>Salário antes do reajuste:</strong> R$ ${salarioAtual.toFixed(2)}</p>
+                <p><strong>Percentual de aumento aplicado:</strong> ${percentualReajuste.toFixed(2)}%</p>
+                <p><strong>Valor do aumento:</strong> R$ ${valorReajuste.toFixed(2)}</p>
+                <p><strong>Novo salário, após o aumento:</strong> R$ ${novoSalario.toFixed(2)}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
